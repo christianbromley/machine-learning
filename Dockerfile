@@ -14,3 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Set the entry point for the container
 ENTRYPOINT ["python", "/app/src/main.py"]
+
+
