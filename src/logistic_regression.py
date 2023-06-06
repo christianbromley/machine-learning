@@ -136,6 +136,7 @@ def gradient_descent_logistic(X, y, starting_w, starting_b: float = 0, niter: in
     b = starting_b
 
     # now loop through number of iterations
+    gd_results = pd.DataFrame()
     for iter in range(niter):
         # compute the gradient with starting w and b
         dj_dw_i, dj_db_i = compute_gradient_logistic(X, y, w, b)
@@ -158,16 +159,18 @@ def gradient_descent_logistic(X, y, starting_w, starting_b: float = 0, niter: in
             print(f"Iteration {iter:4}: Cost {cost_tracker[-1]:0.2e} ",
                   f"w: {w: 0.3e}, b:{b: 0.5e}")
 
-    # create a data frame output
-    results = pd.DataFrame({
-        'iteration': range(niter),
-        'w': w_tracker,
-        'b': b_tracker,
-        'cost': cost_tracker
-    })
-    results['learning_rate'] = alpha
+        # create a data frame output
+        results = pd.DataFrame({
+            'iteration': range(niter),
+            'w': w_tracker,
+            'b': b_tracker,
+            'cost': cost_tracker
+        })
+        results['learning_rate'] = alpha
 
-    return results, w, b
+        gd_results = pd.concat([gd_results, results], axis=0)
+
+    return gd_results, w, b
 
 
 #print(sigmoid(z=3))
