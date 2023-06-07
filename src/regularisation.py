@@ -26,7 +26,7 @@ def logistic_regression_regularised_cost_function(X, y, w, b, l):
         reg_term += reg
     reg_param = (l / (2 * m)) * reg_term
 
-    full_cost = total_cost + reg_param
+    full_cost = cost + reg_param
 
     return full_cost
 
