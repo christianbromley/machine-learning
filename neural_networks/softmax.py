@@ -34,8 +34,8 @@ def softmax_loss(y, activations):
     return -np.log(activations[y-1])
 
 
-vals = np.array([0.1,0.3,0.7,0.2])
-activation = softmax_activation(z=vals)
-loss = softmax_loss(y=3, activations=activation)
-print(activation)
-print(loss)
+# vals = np.array([0.1,0.3,0.7,0.2])
+# activation = softmax_activation(z=vals)
+# loss = softmax_loss(y=3, activations=activation)
+# print(activation)
+# print(loss)
