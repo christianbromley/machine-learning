@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def mse(actual, predicted):
     m = len(actual)
     err = 0
