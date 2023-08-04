@@ -66,10 +66,41 @@ def f1_score(actual, predicted):
     Returns:
 
     """
-    precision = precision(actual, predicted)
-    recall = recall(actual, predicted)
-    return 2 * ((precision*recall) / (precision+recall))
+    prec = precision(actual, predicted)
+    rec = recall(actual, predicted)
+    return 2 * ((prec*rec) / (prec+rec))
 
+
+def select_threshold(y_val, p_val):
+    """
+    Finds the best threshold to use for selecting outliers
+    based on the results from a validation set (p_val)
+    and the ground truth (y_val)
+
+    Args:
+        y_val (ndarray): Ground truth on validation set
+        p_val (ndarray): Results on validation set
+
+    Returns:
+        epsilon (float): Threshold chosen
+        F1 (float):      F1 score by choosing epsilon as threshold
+    """
+
+    best_epsilon = 0
+    best_F1 = 0
+    F1 = 0
+
+    step_size = (max(p_val) - min(p_val)) / 1000
+
+    for epsilon in np.arange(min(p_val), max(p_val), step_size):
+        predicted = np.where(p_val < epsilon, 1, 0)
+        F1 = f1_score(y_val, predicted)
+
+        if F1 > best_F1:
+            best_F1 = F1
+            best_epsilon = epsilon
+
+    return best_epsilon, best_F1
 
 n1 = np.array([1,0,1,0,1,0,0,0,0,1,1,1,0])
 n2 = np.array([1,0,0,1,1,0,0,1,1,1,0,0,1])
