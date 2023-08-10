@@ -32,3 +32,9 @@ State action value or Q function:
     - start in state s
     - take action a
     - then behave optimally afterwards
+
+Bellman equation:
+Q(s,a) (return under a set of functions)
+s' = state you get to
+a' = action you use to get to s'
+Q(s,a) = R(s) + gamma* max a' * Q(s',a')
