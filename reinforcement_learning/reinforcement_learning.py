@@ -20,7 +20,7 @@ def compute_return(reward_sequence: list, gamma: float):
     print(calculated_return)
     return calculated_return
 
-X = np.array([[0,0,0,0,100], [0,0,0,0,50]])
+#X = np.array([[0,0,0,0,100], [0,0,0,0,50]])
 def expected_return(reward_sequences: np.array, gamma: float):
     returns = []
     for i in range(len(reward_sequences)):
@@ -31,4 +31,4 @@ def expected_return(reward_sequences: np.array, gamma: float):
     expected_return = np.mean(returns)
     return expected_return
 
-print(expected_return(X, gamma=0.9))
+#print(expected_return(X, gamma=0.9))
